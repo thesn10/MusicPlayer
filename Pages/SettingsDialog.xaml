@@ -1,0 +1,145 @@
+﻿<ContentDialog
+    x:Class="NCSMusic.SettingsDialog"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NCSMusic"
+    xmlns:models="using:YoutubeExplode.Models"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="Settings"
+    PrimaryButtonText="OK"
+    SecondaryButtonText="Cancel"
+    PrimaryButtonClick="ContentDialog_PrimaryButtonClick"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <RelativePanel>
+        <ToggleSwitch
+            RelativePanel.AlignTopWithPanel="True"
+            Header="Always Download instead of Streaming"
+            Name="swDownloadOrStream">
+
+        </ToggleSwitch>
+        <ToggleSwitch
+            RelativePanel.Below="swDownloadOrStream"
+            Header="Display Logo on Listbox"
+            Name="swSnLogo">
+
+        </ToggleSwitch>
+        <ToggleSwitch
+            RelativePanel.Below="swSnLogo"
+            Header="Music Visualization (Unstable)"
+            Name="swVisualization">
+
+        </ToggleSwitch>
+        <TextBox
+            RelativePanel.Below="swVisualization"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            Header="Download Location"
+            Name="txtBxDownloadLocation">
+
+        </TextBox>
+        <TextBlock
+            RelativePanel.Below="txtBxDownloadLocation"
+            Text="Youtube Music Playlists:"
+            Margin="0,30,0,0"
+            Name="lblYTP">
+
+        </TextBlock>
+        <ListView
+            RelativePanel.Below="lblYTP"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            Name="lstPlaylists"
+            HorizontalContentAlignment="Stretch">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="stL" x:DataType="local:PlaylistX">
+                    <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <StackPanel Orientation="Vertical" RelativePanel.AlignLeftWithPanel="True">
+                                <TextBlock Text="{x:Bind PlaylistTitle}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                                <TextBlock Text="{x:Bind PlaylistLink}"  Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                            </StackPanel>
+                            <Button 
+                                RelativePanel.AlignRightWithPanel="True"
+                                RelativePanel.AlignBottomWithPanel="True"
+                                RelativePanel.AlignTopWithPanel="True"
+                                Click="ButtonRemove_Click"
+                                Tag="{x:Bind PlaylistTitle}"
+                                Content="Remove">
+                            </Button>
+                        </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+        <RelativePanel
+            RelativePanel.Below="lstPlaylists"
+            Name="stckAddPlaylist"
+            HorizontalAlignment="Stretch"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True">
+            <Button
+                Name="btnAddPlaylist"
+                Content="Add Playlist" 
+                Click="Button_Click">
+
+            </Button>
+            <TextBox
+                RelativePanel.AlignRightWithPanel="True"
+                RelativePanel.RightOf="btnAddPlaylist"
+                HorizontalAlignment="Stretch"
+                Name="txtBxYoutubePlaylist">
+
+            </TextBox>
+        </RelativePanel>
+        <TextBlock
+            RelativePanel.Below="stckAddPlaylist"
+            Text="Custom Playlists:"
+            Margin="0,30,0,0"
+            Name="lblCP">
+
+        </TextBlock>
+        <ListView
+            RelativePanel.Below="lblCP"
+            RelativePanel.AlignRightWithPanel="True"
+            RelativePanel.AlignLeftWithPanel="True"
+            Name="lstCPlaylists"
+            HorizontalContentAlignment="Stretch">
+
+            <ListView.ItemTemplate>
+                <DataTemplate x:Name="stC" x:DataType="local:PlaylistX">
+                    <RelativePanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                        <StackPanel Orientation="Vertical" RelativePanel.AlignLeftWithPanel="True">
+                            <TextBlock Text="{x:Bind PlaylistTitle}"  Style="{ThemeResource BaseTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseHighBrush}" />
+                            <TextBlock Text="{x:Bind PlaylistLink}"  Style="{ThemeResource BodyTextBlockStyle}" Foreground="{ThemeResource SystemControlPageTextBaseMediumBrush}"/>
+                        </StackPanel>
+                        <Button 
+                                RelativePanel.AlignRightWithPanel="True"
+                                RelativePanel.AlignBottomWithPanel="True"
+                                RelativePanel.AlignTopWithPanel="True"
+                                Click="ButtonRemove_Click"
+                                Tag="{x:Bind PlaylistTitle}"
+                                Content="Remove">
+                        </Button>
+                    </RelativePanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+        </ListView>
+
+    </RelativePanel>
+</ContentDialog>

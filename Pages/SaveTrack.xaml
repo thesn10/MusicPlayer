@@ -1,0 +1,45 @@
+﻿<ContentDialog
+    x:Class="NCSMusic.SaveTrack"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:NCSMusic"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="{x:Bind track.Title}"
+    SecondaryButtonText="Cancel"
+    SecondaryButtonClick="ContentDialog_SecondaryButtonClick">
+
+    <RelativePanel>
+        <ComboBox 
+            Header="File Format"
+            Name="cbFormat"
+            RelativePanel.AlignLeftWithPanel="True"/>
+        <ComboBox 
+            Header="Quality"
+            Name="cbQuality"
+            Margin="10,0,0,0"
+            IsEnabled="False"
+            RelativePanel.RightOf="cbFormat"/>
+        <TextBlock
+            RelativePanel.Below="cbFormat"
+            Visibility="Collapsed"
+            FontStyle="Italic"
+            Margin="0,10,0,0"
+            Name="lblWarning"/>
+        <Button
+            Margin="0,10,0,0"
+            Name="btnStart"
+            Click="btnStart_Click"
+            RelativePanel.Below="lblWarning">
+            Transcode
+        </Button>
+        <ProgressBar
+            Margin="0,10,0,0"
+            Name="pbProgress"
+            RelativePanel.Below="btnStart"
+            RelativePanel.AlignLeftWithPanel="True"
+            RelativePanel.AlignRightWithPanel="True"/>
+        
+    </RelativePanel>
+</ContentDialog>
